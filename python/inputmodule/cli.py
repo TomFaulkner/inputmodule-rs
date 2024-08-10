@@ -6,7 +6,6 @@ import sys
 from serial.tools import list_ports
 
 # Local dependencies
-from inputmodule import gui
 from inputmodule.inputmodule import (
     INPUTMODULE_PIDS,
     send_command,
@@ -18,14 +17,14 @@ from inputmodule.inputmodule import (
     GameOfLifeStartParam,
     GameControlVal,
 )
-from inputmodule.gui.games import (
-    snake,
-    snake_embedded,
-    pong_embedded,
-    game_of_life_embedded,
-    wpm_demo,
-)
-from inputmodule.gui.ledmatrix import random_eq, clock, blinking
+# from inputmodule.gui.games import (
+#     snake,
+#     snake_embedded,
+#     pong_embedded,
+#     game_of_life_embedded,
+#     wpm_demo,
+# )
+# from inputmodule.gui.ledmatrix import random_eq, clock, blinking
 from inputmodule.inputmodule.ledmatrix import (
     eq,
     breathing,
@@ -237,7 +236,6 @@ def main_cli():
 
     if not ports:
         print("No device found")
-        gui.popup(args.gui, "No device found")
         sys.exit(1)
     elif args.serial_dev is not None:
         filtered_devs = [
@@ -249,12 +247,6 @@ def main_cli():
     elif len(ports) == 1:
         dev = ports[0]
     elif len(ports) >= 1 and not args.gui:
-        gui.popup(
-            args.gui,
-            "More than 1 compatibles devices found. Please choose from the commandline with --serial-dev COMX.\nConnected ports:\n- {}".format(
-                "\n- ".join([port.device for port in ports])
-            ),
-        )
         print(
             "More than 1 compatible device found. Please choose with --serial-dev ..."
         )
@@ -268,7 +260,6 @@ def main_cli():
 
     if not args.gui and dev is None:
         print("No device selected")
-        gui.popup(args.gui, "No device selected")
         sys.exit(1)
 
     if args.bootloader:
@@ -331,7 +322,6 @@ def main_cli():
     elif args.gui:
         devices = find_devs()  # show=False, verbose=False)
         print("Found {} devices".format(len(devices)))
-        gui.run_gui(devices)
     elif args.blink:
         blinking(dev)
     elif args.breathing:
@@ -403,7 +393,6 @@ def print_devs(ports):
 def main_gui():
     devices = find_devs()  # show=False, verbose=False)
     print("Found {} devices".format(len(devices)))
-    gui.run_gui(devices)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,6 @@ dependencies = [
   "pyserial",
   # Optional for GUI
   "getkey",
-  "PySimpleGUI",
   # Optional for image operations
   "Pillow",
 ]

@@ -2,7 +2,7 @@ from enum import IntEnum
 import serial
 
 # TODO: Make independent from GUI
-from inputmodule.gui.gui_threading import disconnect_dev
+# from inputmodule.gui.gui_threading import disconnect_dev
 
 FWK_MAGIC = [0x32, 0xAC]
 FWK_VID = 0x32AC
@@ -139,8 +139,8 @@ def send_command_raw(dev, command, with_response=False):
                 # print(f"Received: {res}")
                 return res
     except (IOError, OSError) as _ex:
-        disconnect_dev(dev.device)
-        # print("Error: ", ex)
+        # disconnect_dev(dev.device)
+        print("Error: ", ex)
 
 
 def send_serial(dev, s, command):
@@ -148,5 +148,5 @@ def send_serial(dev, s, command):
     try:
         s.write(command)
     except (IOError, OSError) as _ex:
-        disconnect_dev(dev.device)
-        # print("Error: ", ex)
+        # disconnect_dev(dev.device)
+        print("Error: ", ex)
