@@ -138,15 +138,15 @@ def send_command_raw(dev, command, with_response=False):
                 res = s.read(RESPONSE_SIZE)
                 # print(f"Received: {res}")
                 return res
-    except (IOError, OSError) as _ex:
+    except (IOError, OSError) as e:
         # disconnect_dev(dev.device)
-        print("Error: ", ex)
+        print("Error: ", e)
 
 
 def send_serial(dev, s, command):
     """Send serial command by using existing serial connection"""
     try:
         s.write(command)
-    except (IOError, OSError) as _ex:
+    except (IOError, OSError) as ex:
         # disconnect_dev(dev.device)
         print("Error: ", ex)

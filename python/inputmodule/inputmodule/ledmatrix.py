@@ -319,6 +319,7 @@ def breathing(dev):
 
 def eq(dev, vals):
     """Display 9 values in equalizer diagram starting from the middle, going up and down"""
+    assert len(vals) == 9, f"Need 9 values for the equalizer: {vals}"
     matrix = [[0 for _ in range(34)] for _ in range(9)]
 
     for col, val in enumerate(vals[:9]):
